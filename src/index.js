@@ -8,7 +8,7 @@ const gallery = document.querySelector('.gallery');
 const btnLoadMore = document.querySelector('.load-more');
 
 let page = 1;
-let searchQuestion = '';
+let searchTerm = '';
 
 btnLoadMore.style.display = 'none';
 
@@ -16,8 +16,8 @@ searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   gallery.innerHTML = '';
   page = 1;
-  searchQuestion = event.target.elements.searchQuery.value;
-  loadImages(searchQuestion, page, btnLoadMore);
+  searchTerm = event.target.elements.searchQuery.value;
+  loadImages(searchTerm, page, btnLoadMore);
 });
 
 async function loadImages(query, page, btnLoadMore) {
