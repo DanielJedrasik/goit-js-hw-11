@@ -6,12 +6,9 @@ import { fetchImages } from './api';
 const searchForm = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
 const btnLoadMore = document.querySelector('.load-more');
-
 let page = 1;
 let searchTerm = '';
-
 btnLoadMore.style.display = 'none';
-
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   gallery.innerHTML = '';
@@ -19,7 +16,6 @@ searchForm.addEventListener('submit', async event => {
   searchTerm = event.target.elements.searchQuery.value;
   loadImages(searchTerm, page, btnLoadMore);
 });
-
 async function loadImages(query, page, btnLoadMore) {
   const perPage = 40;
   const data = await fetchImages(query, page, btnLoadMore, perPage);
@@ -44,7 +40,6 @@ async function loadImages(query, page, btnLoadMore) {
         `
   );
   gallery.insertAdjacentHTML('beforeend', images.join(''));
-
   if (data.totalHits <= page * perPage) {
     btnLoadMore.style.display = 'none';
     Notiflix.Notify.info(
@@ -54,8 +49,7 @@ async function loadImages(query, page, btnLoadMore) {
     btnLoadMore.style.display = 'block';
   }
 }
-
 btnLoadMore.addEventListener('click', () => {
   page++;
-  loadImages(searchQuestion, page, btnLoadMore);
+  loadImages(searchTerm, page, btnLoadMore);
 });
